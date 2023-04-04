@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
+require 'active_record'
 require 'forwardable'
 require 'stripe'
 
-require_relative "stripe_manager/version"
+require_relative 'stripe_manager/version'
 
-require "stripe_manager/init"
-require "stripe_manager/config"
-
+require 'stripe_manager/init'
+require 'stripe_manager/config'
+# ---
 module StripeManager
   @config = StripeManager::Config.setup
   class << self
@@ -16,11 +17,8 @@ module StripeManager
     attr_reader :config
 
     def_delegators :@config, :stripe_api_key, :stripe_api_key=
+    def_delegators :@config, :database_config, :database_config=
 
-    def setStripeKey(key)
-      StripeManager.stripe_api_key = key
-      StripeManager::API::StripeAPI.setConfig
-    end
   end
 
 
