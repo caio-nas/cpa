@@ -13,6 +13,6 @@ gem "standard", "~> 1.3"
 
 gem "debug", require: false
 
-gem 'activerecord', '~> 5.0', '>= 5.0.0.1'
+gem 'activerecord', '~> 7.0'
 
 gem 'sqlite3', '~> 1.3', '>= 1.3.11'

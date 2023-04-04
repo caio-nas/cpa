@@ -17,4 +17,14 @@ RSpec.describe StripeManager::Products do
     stripecall = StripeManager::Checkout.create(data)
     expect(stripecall.url).not_to be nil
   end
+
+  it "Test database Customer" do
+    # Print information about the database table
+    require 'stripe_manager/db/customer'
+    StripeManager::DB::Customer.columns.each { |column|
+        puts column.name
+        puts column.type
+    }
+    expect(true).to be true
+  end
 end
