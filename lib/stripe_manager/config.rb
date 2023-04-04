@@ -1,10 +1,16 @@
+# frozen_string_literal: true
+
 module StripeManager
-  module Config
-    @StripeApiKey =
-      "sk_test_51MoRlvHYLHKZTvhNH4PMOcCqU2XskC83pqeAoXh6yuLBAfLiTGjl9qwpPs0uvzFhp8ZzGouxuy1WWrGHaB4YQ2cJ002RNeTBmE"
-    
-    def self.open
-       StripeManager::API::Stripe.open(@StripeApiKey)
+  # --
+  # --
+  # --
+  class Config
+    attr_accessor :stripe_api_key
+
+    def self.setup
+      new.tap do |instance|
+        yield(instance) if block_given?
+      end
     end
   end
 end

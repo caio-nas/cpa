@@ -4,7 +4,6 @@ module StripeManager
   # Stripe Maneger module
   class Products
     # Module Products
-
     def self.list_products
       Stripe::Product.list({ limit: 3 })
     end

@@ -2,6 +2,7 @@
 
 require "stripe_manager"
 
+StripeManager.setStripeKey("sk_test_51MoRlvHYLHKZTvhNH4PMOcCqU2XskC83pqeAoXh6yuLBAfLiTGjl9qwpPs0uvzFhp8ZzGouxuy1WWrGHaB4YQ2cJ002RNeTBmE")
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
