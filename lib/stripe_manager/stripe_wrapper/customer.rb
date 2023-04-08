@@ -3,7 +3,6 @@
 module StripeManager
  
   class Customer
-                
     def self.create(param )
       attributes = {
         name: param[:name],
@@ -18,12 +17,12 @@ module StripeManager
         },
         phone: param[:phone]
       }
+      
       customers = self.checkEmail(attributes[:email])  #verifica se já tem um customer com esse email, para evitar criar duplicado
       if customers.nil? || customers.data.empty?
         return Stripe::Customer.create(attributes)
-      else
-        raise StripeManager::CustomerCreationError.new("E-mail Já cadastrado!")
       end
+      raise StripeManager::CustomerCreationError.new("E-mail Já cadastrado!")
       return nil #tem um customer com o mesmo email, não cria e retorna vazio
     end
 
@@ -46,19 +45,12 @@ module StripeManager
       Stripe::Customer.retrieve(id)
     end
 
-
-
-   
-
   end #end os Customer class
 
-
-
-
-class CustomerCreationError < StandardError
-  def initialize(msg = "Erro na criação")
-    super
+  class CustomerCreationError < StandardError
+    def initialize(msg = "Erro na criação de usuário")
+      super
+    end
   end
-end
 
 end

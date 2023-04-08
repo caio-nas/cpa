@@ -19,7 +19,7 @@ module StripeManager
     end
     def stripe_api_key=(key)
       @stripe_api_key = key
-      StripeManager::API::StripeAPI.init_config
+      StripeManager::StripeWrapper::StripeAPI.init_config
     end
   end
 end
