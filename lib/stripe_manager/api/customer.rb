@@ -38,6 +38,10 @@ module StripeManager
       Stripe::Customer.delete(id)
     end
 
+    def self.update(param)
+      Stripe::Customer.update(param)
+    end
+
     def self.retrieve(id)
       Stripe::Customer.retrieve(id)
     end

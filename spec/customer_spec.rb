@@ -7,8 +7,10 @@ RSpec.describe StripeManager::Customer do
 
           #limpa o banco de testes anteriores
            deletedCustomer = StripeManager::Customer.checkEmail('john@example.com')
-           StripeManager::Customer.delete( deletedCustomer[:data][0][:id])   
-                  
+           if !deletedCustomer.empty?
+            StripeManager::Customer.delete( deletedCustomer[:data][0][:id])   
+           end
+           
            createdCustomer = StripeManager::Customer.create({
             name: 'John Doe',
             email: 'john@example.com',
