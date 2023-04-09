@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module StripeManager
+module CPA
   module StripeWrapper
     class StripeAPI
       def self.init_config
-        Stripe.api_key = StripeManager.stripe_api_key
+        Stripe.api_key = CPA.stripe_api_key
       end
     end
   end

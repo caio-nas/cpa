@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 require 'yaml'
 
-require "stripe_manager"
+require "CPA"
 
 db_config_file = File.open(File.expand_path(File.dirname(__FILE__)) + '/db_conf.yaml')
 db_config = YAML.load(db_config_file)
 
 # Chave da conta Bruno Amani
-StripeManager.stripe_api_key = "sk_test_51Mn1E3JIGKNOQqBZv4EJT3COuISP6z8tLE8uu2kyy2jD4UfqLylxeoaKEd52ugGYgowaM55tYmGAuDH6QSFGYM5500dFNyLtzq"
-StripeManager.database_config = db_config
+CPA.stripe_api_key = "sk_test_51Mn1E3JIGKNOQqBZv4EJT3COuISP6z8tLE8uu2kyy2jD4UfqLylxeoaKEd52ugGYgowaM55tYmGAuDH6QSFGYM5500dFNyLtzq"
+CPA.database_config = db_config
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

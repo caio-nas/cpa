@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StripeManager
+module CPA
   # --
   # --
   # --
@@ -15,11 +15,11 @@ module StripeManager
 
     def database_config=(db_conf)
       @database_config = db_conf
-      StripeManager::Database.init_config
+      CPA::Database.init_config
     end
     def stripe_api_key=(key)
       @stripe_api_key = key
-      StripeManager::StripeWrapper::StripeAPI.init_config
+      CPA::StripeWrapper::StripeAPI.init_config
     end
   end
 end

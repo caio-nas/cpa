@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'lib/stripe_manager/version'
+require_relative 'lib/CPA/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'stripe_manager'
-  spec.version = StripeManager::VERSION
-  spec.authors = ['Evandro A.O.']
-  spec.email = ['evandro@squadsoft.com.br']
+  spec.name = 'CPA'
+  spec.version = CPA::VERSION
+  spec.authors = ['Evandro A.O.', 'Black Amani']
+  spec.email = ['contato@squadsoft.com.br']
 
-  spec.summary = 'Stripe Manager creates a control of stripe interactions'
-  spec.description = 'Stripe Manager uses stripe gem to create a batter control of interactions on stripe plataform and it gives a full vision over the data ' 
+  spec.summary = 'CPA creates a control of stripe interactions'
+  spec.description = 'CPA uses stripe gem to create a better control of interactions on stripe plataform and it gives a full vision over the data ' 
   spec.homepage = 'http://www.squadsoft.com.br'
   spec.required_ruby_version = '>= 2.6.0'
 

@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in stripe_manager.gemspec
+# Specify your gem's dependencies in CPA.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

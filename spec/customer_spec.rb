@@ -1,17 +1,17 @@
 # frozen_string_literal: true
-require './lib/stripe_manager/stripe_wrapper/customer'
+require './lib/CPA/stripe_wrapper/customer'
 require "./spec/spec_helper"  # this
-RSpec.describe StripeManager::Customer do
+RSpec.describe CPA::StripeWrapper::Customer do
   
   describe 'Cadastrar cliente no Stripe' do
       
       #limpa o banco de testes anteriores, caso existam
-      deletedCustomer = StripeManager::Customer.checkEmail('john@example.com')
+      deletedCustomer = CPA::StripeWrapper::Customer.getByEmail('john@example.com')
       if !deletedCustomer.empty?
-      StripeManager::Customer.delete( deletedCustomer[:data][0][:id])   
+      CPA::StripeWrapper::Customer.delete( deletedCustomer[:data][0][:id])   
       end
       
-      createdCustomer = StripeManager::Customer.create({
+      createdCustomer = CPA::StripeWrapper::Customer.create({
       name: 'John Doe',
       email: 'john@example.com',
       line1: '123 Main St',
@@ -22,12 +22,12 @@ RSpec.describe StripeManager::Customer do
     })
     
     it 'Novo cliente cadastrado' do
-      expect( StripeManager::Customer.retrieve(createdCustomer[:id])).to be_a(Stripe::Customer)
+      expect( CPA::StripeWrapper::Customer.retrieve(createdCustomer[:id])).to be_a(Stripe::Customer)
     end
 
-    it 'Cliente Stripe com mesmo email não foi cadastrado' do
+    it 'Evita que clientes Stripe com o mesmo email sejam cadastrados' do
         begin
-          createdCustomer2 = StripeManager::Customer.create({
+          createdCustomer2 = CPA::StripeWrapper::Customer.create({
             name: 'John Doe2',
             email: 'john@example.com',
             line1: '1233 Main St2',
@@ -37,15 +37,44 @@ RSpec.describe StripeManager::Customer do
             country: 'BR'
           })
         rescue => exception
-          expect(exception).to be_a(StripeManager::CustomerCreationError)
+          expect(exception).to be_a(CPA::StripeWrapper::CustomerCreationError)
         end          
     end      
 
-    it 'Cliente que foi criado está apagado' do
-      deletedCustomer = StripeManager::Customer.retrieve(createdCustomer.id) 
+    it 'Apaga cliente stripe que foi criado' do
+      deletedCustomer = CPA::StripeWrapper::Customer.retrieve(createdCustomer.id) 
       deletedCustomer.delete
-      deletedCustomer = StripeManager::Customer.retrieve(createdCustomer.id) 
+      deletedCustomer = CPA::StripeWrapper::Customer.retrieve(createdCustomer.id) 
       expect( deletedCustomer.deleted).to be(true)
     end
   end
+  describe 'Cadastrar cliente Stripe no banco CPA' do
+    it 'Cria e apaga cliente stripe' do
+      # Print information about the database table
+      require './lib/CPA/DB/customer'
+      #require './lib/CPA/stripe_wrapper/customer'
+   
+      dbcustomer = CPA::DB::Customer.new(name: "John", email: "john@example.com")
+      dbcustomer.save
+      dataCustomers = CPA::DB::Customer.all
+      puts "--- TABELA ---"
+      dataCustomers.each.with_index(1) do |customer, index|
+        puts  "#{index}" + " - " + customer.name + " - " +  customer.email
+        customer.destroy
+        dbcustomer.save
+      end
+      puts "--------------"
+     
+      dataCustomers = CPA::DB::Customer.all
+      puts "--- TABELA ---"
+      dataCustomers.each.with_index(1) do |customer, index|
+        puts  "#{index}" + " - " + customer.name + " - " +  customer.email
+        
+      end
+      puts "--------------"
+      expect(dataCustomers.empty?).to be(true)
+    end
+  end
+
+  
 end      
