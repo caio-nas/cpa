@@ -4,13 +4,13 @@ require 'active_record'
 require 'forwardable'
 require 'stripe'
 
-require_relative 'stripe_manager/version'
+require_relative 'CPA/version'
 
-require 'stripe_manager/init'
-require 'stripe_manager/config'
+require 'CPA/init'
+require 'CPA/config'
 # ---
-module StripeManager
-  @config = StripeManager::Config.setup
+module CPA
+  @config = CPA::Config.setup
   class << self
     extend Forwardable
 

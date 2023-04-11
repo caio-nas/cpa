@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-module StripeManager
+module CPA
   # --
   # --
   # --
   class Database
     def self.init_config
-      ActiveRecord::Base.establish_connection(StripeManager.database_config)
+      ActiveRecord::Base.establish_connection(CPA.database_config)
     end
   end
 end

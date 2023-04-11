@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-RSpec.describe StripeManager::Products do
+RSpec.describe CPA::StripeWrapper::Products  do
   it "List of products" do 
-    expect(2).to eq(StripeManager::Products.list_products.data.length())
+    expect(2).to eq(CPA::StripeWrapper::Products .list_products.data.length())
   end
 
   it "making checkout" do
@@ -14,17 +14,9 @@ RSpec.describe StripeManager::Products do
         mode: 'subscription',
         client_reference_id: 'cus_NdmYqLRet6FPT0'
     }
-    stripecall = StripeManager::Checkout.create(data)
+    stripecall = CPA::StripeWrapper::Checkout.create(data)
     expect(stripecall.url).not_to be nil
   end
 
-  it "Test database Customer" do
-    # Print information about the database table
-    require 'stripe_manager/db/customer'
-    StripeManager::DB::Customer.columns.each { |column|
-        puts column.name
-        puts column.type
-    }
-    expect(true).to be true
-  end
+  
 end
