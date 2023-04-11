@@ -21,6 +21,9 @@ GEM
       tzinfo (~> 2.0)
     ast (2.4.2)
     concurrent-ruby (1.2.2)
+    debase (0.2.4.1)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (3.2.0)
     debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
@@ -86,6 +89,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 7.0)
+  debase (~> 0.2.4)
   debug
   rake (~> 13.0)
   rspec (~> 3.0)

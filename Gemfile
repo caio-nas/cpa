@@ -16,3 +16,5 @@ gem "debug", require: false
 gem 'activerecord', '~> 7.0'
 
 gem 'sqlite3', '~> 1.3', '>= 1.3.11'
+
+gem "debase", "~> 0.2.4"

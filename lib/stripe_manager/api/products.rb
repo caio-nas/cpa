@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+puts 'teste'
 module StripeManager
   # Stripe Maneger module
   class Products
