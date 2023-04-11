@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require './lib/CPA/stripe_wrapper/customer'
+require './lib/cpa/stripe_wrapper/customer'
 require "./spec/spec_helper"  # this
 RSpec.describe CPA::StripeWrapper::Customer do
   
@@ -51,7 +51,7 @@ RSpec.describe CPA::StripeWrapper::Customer do
   describe 'Cadastrar cliente Stripe no banco CPA' do
     it 'Cria e apaga cliente stripe' do
       # Print information about the database table
-      require './lib/CPA/DB/customer'
+      require './lib/cpa/db/customer'
       #require './lib/CPA/stripe_wrapper/customer'
    
       dbcustomer = CPA::DB::Customer.new(name: "John", email: "john@example.com")

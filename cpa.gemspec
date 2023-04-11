@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/CPA/version'
+require_relative 'lib/cpa/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'CPA'

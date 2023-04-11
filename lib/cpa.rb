@@ -4,10 +4,10 @@ require 'active_record'
 require 'forwardable'
 require 'stripe'
 
-require_relative 'CPA/version'
+require_relative 'cpa/version'
 
-require 'CPA/init'
-require 'CPA/config'
+require 'cpa/init'
+require 'cpa/config'
 # ---
 module CPA
   @config = CPA::Config.setup

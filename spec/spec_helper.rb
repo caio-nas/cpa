@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'yaml'
 
-require "CPA"
+require "cpa"
 
 db_config_file = File.open(File.expand_path(File.dirname(__FILE__)) + '/db_conf.yaml')
 db_config = YAML.load(db_config_file)
