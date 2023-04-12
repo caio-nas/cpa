@@ -6,7 +6,7 @@ module CPA
     class Products
       # Module Products
       def self.list_products
-        Stripe::Product.list({ limit: 3 })
+        Stripe::Product.list()
       end
 
       def self.get(id)

@@ -18,5 +18,9 @@ RSpec.describe CPA::StripeWrapper::Products  do
     expect(stripecall.url).not_to be nil
   end
 
+  it "controller list" do
+    purchase = CPA::Controller::Pruchase.new    
+    expect(0).to eq(purchase.products_list.data.length())
+  end
   
 end
