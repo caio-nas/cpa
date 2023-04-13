@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'cpa/controllers/base/controller'
+require 'cpa/helpers/controller'
 require 'cpa/stripe_wrapper/products'
 
 module CPA
