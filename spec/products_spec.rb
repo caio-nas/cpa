@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 RSpec.describe CPA::StripeWrapper::Products  do
-  it "List of products" do 
-    expect(2).to eq(CPA::StripeWrapper::Products .list_products.data.length())
-  end
-
   it "making checkout" do
     data = {
         success_url: 'https://example.com/success',
@@ -14,13 +10,14 @@ RSpec.describe CPA::StripeWrapper::Products  do
         mode: 'subscription',
         client_reference_id: 'cus_NdmYqLRet6FPT0'
     }
-    stripecall = CPA::StripeWrapper::Checkout.create(data)
+    purchase = CPA::Controller::Purchase.new
+    stripecall = purchase.create_checkout(data)
     expect(stripecall.url).not_to be nil
   end
 
   it "controller list" do
-    purchase = CPA::Controller::Pruchase.new    
-    expect(0).to eq(purchase.products_list.data.length())
+    purchase = CPA::Controller::Purchase.new    
+    expect(2).to eq(purchase.products_list.data.length())
   end
   
 end

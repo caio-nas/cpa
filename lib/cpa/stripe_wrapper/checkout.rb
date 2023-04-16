@@ -4,9 +4,9 @@ module CPA
   module StripeWrapper
     # --
     # --
-    class Checkout
+    class Checkout < Stripe::Checkout::Session 
       def self.create(param)
-        Stripe::Checkout::Session.create(param)
+        super(param)
       end
     end
   end
