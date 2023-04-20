@@ -2,7 +2,7 @@
 
 module CPA
   module StripeWrapper
-    class Customer
+    class Customer < Stripe::Customer
 
     
       def self.create_bulk(customers) #cria client stripe em lote. Útil se for necessário para importar  clientes do sistema de origem para o stripe
@@ -50,17 +50,7 @@ module CPA
         return  Stripe::Customer.list ({email:param_email} )
       end
 
-      def self.delete(id)
-        Stripe::Customer.delete(id)
-      end
-
-      def self.update(param)
-        Stripe::Customer.update(param)
-      end
-
-      def self.retrieve(id)
-        Stripe::Customer.retrieve(id)
-      end
+      
 
     end #end os Customer class
 
