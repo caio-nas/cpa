@@ -3,9 +3,32 @@
 module CPA
     module Controller
         class SubscriptionManager < CPA::BaseController
+            require './lib/cpa/db/customer'
             
-            
-            def self.getCPACustomer(email)
+            def self.getCustomer(email)
+                
+
+                customerStripe = CPA::StripeWrapper::Customer.getByEmail(email)
+                
+                
+             
+                dbcustomer = CPA::DB::Customer.new(name: "John", email: "john@example.com")
+                dbcustomer.save
+
+                
+                createdCustomer = CPA::StripeWrapper::Customer.create({
+                    name: 'John Doe',
+                    email: 'john@example.com',
+                    line1: '123 Main St',
+                    city: 'Anytown',
+                    postal_code: '12345',
+                    state: 'CA',
+                    country: 'US'
+                  })
+                
+                
+                
+                dbcustomer = CPA::DB::Customer.new(name: "John", email: "john@example.com")
 
 
             end
