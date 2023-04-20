@@ -18,6 +18,7 @@ module CPA
 
     def_delegators :@config, :stripe_api_key, :stripe_api_key=
     def_delegators :@config, :database_config, :database_config=
+    def_delegators :@config, :endpoint_secret, :endpoint_secret=
 
   end
 
