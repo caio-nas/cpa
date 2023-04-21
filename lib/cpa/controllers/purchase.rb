@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 require 'cpa/helpers/controller'
 require 'cpa/stripe_wrapper/products'
+require 'cpa/stripe_wrapper/checkout'
 
 module CPA
     module Controller
-        class Pruchase < CPA::BaseController
+        class Purchase < CPA::BaseController
             def products_list
-                CPA::StripeWrapper::Products.list_products
+                CPA::StripeWrapper::Products.list
             end
             def get_product(id)
-                CPA::StripeWrapper::Products.get(id)
+                CPA::StripeWrapper::Products.retrieve(id)
+            end
+
+            def create_checkout(data)
+                CPA::StripeWrapper::Checkout.create(data)
             end
         end
     end
