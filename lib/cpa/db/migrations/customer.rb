@@ -1,17 +1,32 @@
 require 'active_record'
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'test.db')
+
 
 class CreateCustomerTable < ActiveRecord::Migration[7.0]
   def change
     create_table :customers do |table|
       table.string :name
       table.string :email
+      table.integer :user_id
+      table.string :payment_intent
+      table.string :payment_status
       table.timestamps
     end
   end
 
 end
 
-# Create the table
-CreateCustomerTable.migrate(:up)
+class CPATableCustomer
+  def self.set_config(config)
+    ActiveRecord::Base.establish_connection(config)
+    #adapter: 'sqlite3', database: 'test.db'
+  end
+  # Create the table
+  def self.table_up
+    CreateCustomerTable.migrate(:up)
+  end
+
+  def self.table_down
+    CreateCustomerTable.migrate(:down)
+  end
+end

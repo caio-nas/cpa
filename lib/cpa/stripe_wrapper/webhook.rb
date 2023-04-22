@@ -24,7 +24,7 @@ module CPA
               # Retrieve the event by verifying the signature using the raw body and secret.
               #srequest.env['HTTP_STRIPE_SIGNATURE'];
               begin
-                event = supper.construct_event(
+                event = super.construct_event(
                   payload, http_stripe_signature, CPA.endpoint_secret
                 )
               rescue Stripe::SignatureVerificationError => e
