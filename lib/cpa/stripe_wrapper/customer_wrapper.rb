@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'cpa/stripe_wrapper/customer_wrapper'
 module CPA
   module StripeWrapper
     class Customer < Stripe::Customer

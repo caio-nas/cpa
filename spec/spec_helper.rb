@@ -20,4 +20,16 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  def displayTable(classPath)
+    #Imprime uma tabela com os registros
+    registros = classPath.all
+    puts "--- TABELA ---"
+    registros.each.with_index(1) do |registro, index|
+      if !registro.nil?
+        puts  "#{index}" + " - " + registro.displayRecord
+      end
+    end
+    puts "--------------"
+  end
 end

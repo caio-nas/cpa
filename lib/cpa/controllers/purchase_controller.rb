@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'cpa/helpers/controller'
-require 'cpa/stripe_wrapper/products'
-require 'cpa/stripe_wrapper/checkout'
+require 'cpa/stripe_wrapper/products_wrapper'
+require 'cpa/stripe_wrapper/checkout_wrapper'
 
 module CPA
     module Controller

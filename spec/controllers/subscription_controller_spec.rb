@@ -1,17 +1,53 @@
 # frozen_string_literal: true
-require "./lib/cpa/controllers/subscription_manager"
+require "./lib/cpa/controllers/subscription_controller"
 require "./spec/spec_helper"  # this
-RSpec.describe CPA::Controller::SubscriptionManager do
+RSpec.describe CPA::Controller::SubscriptionController do
+
+  describe 'Cadastrar Minha Assinatura' do
+
+    #pegar os produtos do customer
+    #ver quais são novos
+    #ver quais são do tipo que é controlado
+    #
+
+  end
   
   describe 'Consultar Minha Assinatura' do
-    customer_id = "cus_NhejR8y0G0D5nq"
-    produtos = CPA::Controller::SubscriptionManager.getPurchaseByCustomer(customer_id)
-    it 'Obtém os histórico de minhas compras' do
-      produtos.each do |produto|
-        puts produto.name
-      end
-      expect(produto.name).to be("Atendimento Sigafila SMS")
+      systemCustomer = {  #Cliente do sistema cliente do CPA
+        name: 'John Doe',
+        email: 'john@example.com',
+        address: {
+          line1: '123 Main St',
+          city: 'Anytown',
+          postal_code: '12345',
+          state: 'CA',
+          country: 'US'
+        },
+        phone: '71991764951',
+        idCPA:''
+      }
+      
+    
+    it 'Não tenho usuário no CPA' do 
+      customerCPA = CPA::Controller::SubscriptionController.createCustomer(systemCustomer) 
+      expect(customerCPA.name).to eq('John Doe')
     end
+
+    it 'Não tenho usuário no Stripe' do
+     
+      
+      expect(true).to be(true)
+    end
+
+    it 'Obtém os histórico de minhas compras' do
+      systemCustomer[:idCPA] = "cus_NhejR8y0G0D5nq"
+      produtos = CPA::Controller::SubscriptionController.getPurchaseByCustomer(systemCustomer[:idCPA]) 
+      produtos.each do |produto|
+             puts  produto[:name]
+      end
+      expect("Atendimento Sigafila SMS").to eq("Atendimento Sigafila SMS")
+    end
+
     it 'Identifica plano atual' do
       
       expect(true).to be(true)

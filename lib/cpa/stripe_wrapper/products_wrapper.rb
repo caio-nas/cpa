@@ -9,9 +9,7 @@ module CPA
         super
       end
 
-      def self.retrieve(id)
-        super(id)
-      end
+    
     end
   end
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require './lib/cpa/controllers/purchase_controller.rb'
 RSpec.describe CPA::StripeWrapper::Products  do
   it "making checkout" do
     data = {

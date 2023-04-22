@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require './lib/cpa/stripe_wrapper/customer'
+require './lib/cpa/stripe_wrapper/customer_wrapper'
 require "./spec/spec_helper"  # this
 RSpec.describe CPA::StripeWrapper::Customer do
   
@@ -48,33 +48,7 @@ RSpec.describe CPA::StripeWrapper::Customer do
       expect( deletedCustomer.deleted).to be(true)
     end
   end
-  describe 'Cadastrar cliente Stripe no banco CPA' do
-    it 'Cria e apaga cliente stripe' do
-      # Print information about the database table
-      require './lib/cpa/db/customer'
-      #require './lib/CPA/stripe_wrapper/customer'
-   
-      dbcustomer = CPA::DB::Customer.new(name: "John", email: "john@example.com")
-      dbcustomer.save
-      dataCustomers = CPA::DB::Customer.all
-      puts "--- TABELA ---"
-      dataCustomers.each.with_index(1) do |customer, index|
-        puts  "#{index}" + " - " + customer.name + " - " +  customer.email
-        customer.destroy
-        dbcustomer.save
-      end
-      puts "--------------"
-     
-      dataCustomers = CPA::DB::Customer.all
-      puts "--- TABELA ---"
-      dataCustomers.each.with_index(1) do |customer, index|
-        puts  "#{index}" + " - " + customer.name + " - " +  customer.email
-        
-      end
-      puts "--------------"
-      expect(dataCustomers.empty?).to be(true)
-    end
-  end
+
 
   
 end      
