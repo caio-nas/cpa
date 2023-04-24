@@ -3,7 +3,7 @@ require 'cpa/helpers/controller'
 require 'cpa/stripe_wrapper/products_wrapper'
 require 'cpa/stripe_wrapper/checkout_wrapper'
 require 'cpa/stripe_wrapper/webhook'
-require 'cpa/db/session_migrations'
+require 'cpa/db/session'
 
 module CPA
     module Controller
