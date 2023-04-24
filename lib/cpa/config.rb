@@ -5,7 +5,7 @@ module CPA
   # --
   # --
   class Config
-    attr_accessor :stripe_api_key, :database_config
+    attr_accessor :stripe_api_key, :database_config, :endpoint_secret
 
     def self.setup
       new.tap do |instance|

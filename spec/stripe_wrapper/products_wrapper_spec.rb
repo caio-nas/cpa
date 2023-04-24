@@ -12,13 +12,19 @@ RSpec.describe CPA::StripeWrapper::Products  do
         client_reference_id: 'cus_NdmYqLRet6FPT0'
     }
     purchase = CPA::Controller::Purchase.new
-    stripecall = purchase.create_checkout(data)
-    expect(stripecall.url).not_to be nil
+    stripe_chkt = purchase.create_checkout(data, 1)
+    # close payment_intent
+    #puts stripe_chkt.payment_intent
+    #purchase = CPA::Controller::Purchase.new
+    #purchase.webhook({id: stripe_chkt.payment_intent}, '--')
+    puts stripe_chkt
+
+    expect(stripe_chkt.url).not_to be nil
   end
 
   it "controller list" do
     purchase = CPA::Controller::Purchase.new    
     expect(2).to eq(purchase.products_list.data.length())
   end
-  
+ 
 end
