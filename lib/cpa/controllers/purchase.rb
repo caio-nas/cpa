@@ -19,7 +19,7 @@ module CPA
                 checkout = CPA::StripeWrapper::Checkout.create(data)
                 session = CPA::DB::Session.new
                 session.user_id = user_id 
-                session.payment_intent = checkout.payment_intent
+                session.checkout_id = checkout.id
                 session.payment_status = checkout.payment_status
                 session.save
 
@@ -30,11 +30,13 @@ module CPA
                 event = CPA::StripeWrapper::Webhook.create_event_payload(payload, http_stripe_signature)
                  # Handle the event
                 case event.type
-                when 'payment_intent.succeeded'
-                  payment_intent = event.data.object # contains a Stripe::PaymentIntent
-                  session = CPA::DB::Session.find_by(payment_intent: payment_intent['id'])
-                  session.payment_status = 'paid'
-                  session.save
+                when 'checkout.session.completed'
+                  checkout_session = event.data.object # contains a Stripe::PaymentIntent
+                  session = CPA::DB::Session.find_by(checkout_id: checkout_session['id'])
+                  if session != nil
+                    session.payment_status = checkout_session['payment_status']
+                    session.save
+                  end
                 else
                   puts "Unhandled event type: #{event.type}"
                 end

@@ -16,7 +16,6 @@ module CPA
             rescue JSON::ParserError => e
                 # Invalid payload
                 puts " Webhook error while parsing basic request. #{e.message}"
-                status 400
                 return
             end
              # Check if webhook signing is configured.
@@ -29,7 +28,6 @@ module CPA
                 )
               rescue Stripe::SignatureVerificationError => e
                 puts "⚠️  Webhook signature verification failed. #{e.message}"
-                status 400
               end
             end
 

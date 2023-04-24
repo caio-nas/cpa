@@ -6,7 +6,7 @@ class CreateSessionTable < ActiveRecord::Migration[7.0]
   def change
     create_table :sessions do |table|
       table.integer :user_id
-      table.string :payment_intent
+      table.string :checkout_id
       table.string :payment_status
       table.timestamps
     end
