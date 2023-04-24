@@ -5,9 +5,9 @@ require 'json'
 module CPA
     module StripeWrapper
       # Stripe Webhook
-      class Webhook < Stripe::Webhook
+      class Webhook
         # Module 
-        def create_event_payload(payload, http_stripe_signature)
+        def self.create_event_payload(payload, http_stripe_signature)
             event = nil
             begin
                 event = Stripe::Event.construct_from(
@@ -24,7 +24,7 @@ module CPA
               # Retrieve the event by verifying the signature using the raw body and secret.
               #srequest.env['HTTP_STRIPE_SIGNATURE'];
               begin
-                event = super.construct_event(
+                event = Stripe::Webhook.construct_event(
                   payload, http_stripe_signature, CPA.endpoint_secret
                 )
               rescue Stripe::SignatureVerificationError => e
